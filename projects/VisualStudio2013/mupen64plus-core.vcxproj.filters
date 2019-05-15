@@ -384,9 +384,6 @@
     <ClCompile Include="..\..\src\device\rcp\rdp\fb.c">
       <Filter>device\rcp\rdp</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\device\dd\dd_controller.c">
-      <Filter>device\dd</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\subprojects\md5\md5.c">
       <Filter>subprojects\md5</Filter>
     </ClCompile>
@@ -721,9 +718,6 @@
     </ClInclude>
     <ClInclude Include="..\..\src\device\rcp\rdp\fb.h">
       <Filter>device\rcp\rdp</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\device\dd\dd_controller.h">
-      <Filter>device\dd</Filter>
     </ClInclude>
     <ClInclude Include="..\..\subprojects\md5\md5.h">
       <Filter>subprojects\md5</Filter>
