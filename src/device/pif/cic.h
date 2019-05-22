@@ -30,8 +30,12 @@ enum cic_version
     CIC_X105,
     CIC_X106,
     CIC_5101,
+#if defined(DISKDRIVE64) /* build option for 64 Disk Drive support */
     CIC_5167,
     CIC_8303
+#else
+    CIC_5167
+#endif /* build option for 64 Disk Drive support */
 };
 
 struct cic

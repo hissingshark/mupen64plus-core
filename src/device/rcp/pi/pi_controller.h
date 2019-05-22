@@ -27,8 +27,12 @@
 
 #include "osal/preproc.h"
 
+#if defined(DISKDRIVE64) /* build option for 64 Disk Drive support */
 struct cart;
 struct dd_controller;
+#else
+struct device;
+#endif /* build option for 64 Disk Drive support */
 struct mi_controller;
 struct ri_controller;
 struct rdp_core;
@@ -57,16 +61,23 @@ struct pi_dma_handler
     unsigned int (*dma_write)(void* opaque, uint8_t* dram, uint32_t dram_addr, uint32_t cart_addr, uint32_t length);
 };
 
+#if defined(DISKDRIVE64) /* build option for 64 Disk Drive support */
 typedef void (*pi_dma_handler_getter)(struct cart* cart, struct dd_controller* dd, uint32_t address, void** opaque, const struct pi_dma_handler** handler);
+#else
+typedef void (*pi_dma_handler_getter)(struct device* dev, uint32_t address, void** opaque, const struct pi_dma_handler** handler);
+#endif /* build option for 64 Disk Drive support */
 
 struct pi_controller
 {
     uint32_t regs[PI_REGS_COUNT];
 
     pi_dma_handler_getter get_pi_dma_handler;
-
+#if defined(DISKDRIVE64) /* build option for 64 Disk Drive support */
     struct cart* cart;
     struct dd_controller* dd;
+#else
+    struct device* dev;
+#endif /* build option for 64 Disk Drive support */
     struct mi_controller* mi;
     struct ri_controller* ri;
     struct rdp_core* dp;
@@ -80,9 +91,13 @@ static osal_inline uint32_t pi_reg(uint32_t address)
 
 
 void init_pi(struct pi_controller* pi,
+#if defined(DISKDRIVE64) /* build option for 64 Disk Drive support */
              pi_dma_handler_getter get_pi_dma_handler,
              struct cart* cart,
              struct dd_controller* dd,
+#else
+             struct device* dev, pi_dma_handler_getter get_pi_dma_handler,
+#endif /* build option for 64 Disk Drive support */  
              struct mi_controller* mi,
              struct ri_controller* ri,
              struct rdp_core* dp);

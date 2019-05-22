@@ -40,6 +40,8 @@ void close_file_storage(struct file_storage* storage);
 extern const struct storage_backend_interface g_ifile_storage;
 extern const struct storage_backend_interface g_ifile_storage_ro;
 extern const struct storage_backend_interface g_isubfile_storage;
+#if defined(DISKDRIVE64) /* build option for 64 Disk Drive support */
 extern const struct storage_backend_interface g_ifile_storage_dd_sdk_dump;
+#endif /* build option for 64 Disk Drive support */
 
 #endif
